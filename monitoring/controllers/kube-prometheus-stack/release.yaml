@@ -14,7 +14,20 @@ spec:
         name: kube-state-metrics
         namespace: monitoring
       interval: 10m
+  values:
+    extraArgs:
+      - --custom-resource-state-only=true
+      - --custom-resource-config=/config/kube-state-metrics-config.yaml
+    extraVolumes:
+      - name: config-volume
+        configMap:
+          name: kube-state-metrics-config
+    extraVolumeMounts:
+      - name: config-volume
+        mountPath: /config
+        readOnly: true
   valuesFrom:
     - kind: ConfigMap
       name: kube-state-metrics-config
       valuesKey: kube-state-metrics-config.yaml
+
