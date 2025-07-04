@@ -8,14 +8,15 @@ spec:
   chart:
     spec:
       chart: kube-state-metrics
-      version: "2.13.3"
+      version: "5.9.0"
       sourceRef:
         kind: HelmRepository
-        name: kube-state-metrics
+        name: prometheus-community
         namespace: monitoring
       interval: 10m
   values:
-    extraArgs:
+    args:
+      - --custom-resource-state-only=true
       - --custom-resource-config=/config/kube-state-metrics-config.yaml
     extraVolumes:
       - name: config-volume
