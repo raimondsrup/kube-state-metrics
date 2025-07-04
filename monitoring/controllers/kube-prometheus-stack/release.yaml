@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: kube-state-metrics
-      version: "*"
+      version: "2.13.3"
       sourceRef:
         kind: HelmRepository
         name: kube-state-metrics
